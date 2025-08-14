@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu Plimt</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  .menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  .item {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+
+  .item:hover {
+    transform: scale(1.05);
+  }
+
+  .item img {
+    width: 100%;
+    max-width: 180px;
+    border-radius: 10px;
+  }
+
+  .item h3 {
+    margin: 10px 0 5px;
+    font-size: 1.2rem;
+  }
+
+  .price {
+    color: #28a745;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+  }
+
+  .description {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 10px;
+  }
+
+  .stars {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  .star {
+    color: #ccc;
+    transition: color 0.3s;
+  }
+
+  .star.active {
+    color: #f5b301;
+  }
+</style>
+</head>
+<body>
+
+<h1>Cardápio Plimt</h1>
+<p style="text-align:center; color:#555;">Veja nossos produtos e avalie os que já comeu!</p>
+
+<div class="menu">
+  <div class="item" data-id="1">
+    <img src="./assets/Sorvete Plimt_1.jpg" alt="Sorvete Plimt">
+    <h3>Sorvete Plimt</h3>
+    <div class="price">R$ 19,90</div>
+    <div class="description">Sorvete de Gengibre que busca aliviar dores de garganta.</div>
+    <div class="stars">
+      <span class="star" data-value="1">&#9733;</span>
+      <span class="star" data-value="2">&#9733;</span>
+      <span class="star" data-value="3">&#9733;</span>
+      <span class="star" data-value="4">&#9733;</span>
+      <span class="star" data-value="5">&#9733;</span>
+    </div>
+  </div>
+
+  <div class="item" data-id="2">
+    <img src="./assets/Sacole-exemplo.jpg" alt="Sacolé XXX">
+    <h3>Sacolé XXX</h3>
+    <div class="price">R$ 6,90</div>
+    <div class="description">"O Plimt justifica os meios."</div>
+    <div class="stars">
+      <span class="star" data-value="1">&#9733;</span>
+      <span class="star" data-value="2">&#9733;</span>
+      <span class="star" data-value="3">&#9733;</span>
+      <span class="star" data-value="4">&#9733;</span>
+      <span class="star" data-value="5">&#9733;</span>
+    </div>
+  </div>
+
+  <div class="item" data-id="3">
+    <img src="./assets/Picole-exemplo.jpeg" alt="Plimt-Picolé">
+    <h3>Plimt-Picolé</h3>
+    <div class="price">R$ 3,00</div>
+    <div class="description">"Penso, logo me derreto"</div>
+    <div class="stars">
+      <span class="star" data-value="1">&#9733;</span>
+      <span class="star" data-value="2">&#9733;</span>
+      <span class="star" data-value="3">&#9733;</span>
+      <span class="star" data-value="4">&#9733;</span>
+      <span class="star" data-value="5">&#9733;</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Função para salvar a avaliação no localStorage
+  function salvarAvaliacao(itemId, rating) {
+    localStorage.setItem('rating_' + itemId, rating);
+  }
+
+  // Função para carregar avaliações salvas
+  function carregarAvaliacao(itemId, stars) {
+    const ratingSalvo = localStorage.getItem('rating_' + itemId);
+    if (ratingSalvo) {
+      stars.forEach(star => {
+        if (parseInt(star.dataset.value) <= ratingSalvo) {
+          star.classList.add('active');
+        }
+      });
+    }
+  }
+
+  document.querySelectorAll('.item').forEach(item => {
+    const stars = item.querySelectorAll('.star');
+    const itemId = item.dataset.id;
+
+    // Carregar avaliações salvas
+    carregarAvaliacao(itemId, stars);
+
+    stars.forEach(star => {
+      star.addEventListener('click', () => {
+        const valor = parseInt(star.dataset.value);
+
+        // Atualiza visual
+        stars.forEach(s => s.classList.remove('active'));
+        stars.forEach(s => {
+          if (parseInt(s.dataset.value) <= valor) {
+            s.classList.add('active');
+          }
+        });
+
+        // Salva no localStorage
+        salvarAvaliacao(itemId, valor);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
