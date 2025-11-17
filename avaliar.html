@@ -3,92 +3,113 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Menu Plimt</title>
+<title>Avaliação Plimt</title>
+
 <style>
   body {
     font-family: Arial, sans-serif;
-    background: #f8f9fa;
+    background: #f7d9a6 url('https://i.imgur.com/j0wVTLf.png');
+    background-size: 300px;
     margin: 0;
-    padding: 20px;
+    padding: 30px;
+    color: #4a2c0a;
   }
 
   h1 {
     text-align: center;
-    margin-bottom: 15px;
+    font-size: 2rem;
+    color: #8b4513;
+    margin-top: 70px; /* para não ficar atrás do botão flutuante */
   }
 
-  .menu {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+  .container {
+    max-width: 500px;
+    margin: auto;
+    background: #fffef8;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
   }
 
-  .item {
-    background: white;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.3s ease;
+  /* --- BOTÃO FLUTUANTE DO JINGLE --- */
+  #playJingle {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 9999;
+    
+    background: #dd591d;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 18px;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.25);
   }
 
-  .item:hover {
-    transform: scale(1.05);
+  #playJingle:hover {
+    scale: 1.05;
+    opacity: 0.9;
+    transition: 0.2s;
   }
 
-  .item img {
-    width: 100%;
-    max-width: 180px;
-    border-radius: 10px;
+  /* --- PRODUTOS --- */
+  .product {
+    margin-bottom: 60px; /* MAIOR espaçamento entre produtos */
   }
 
-  .item h3 {
-    margin: 10px 0 5px;
-    font-size: 1.2rem;
-  }
-
-  .price {
-    color: #28a745;
-    font-weight: bold;
-    font-size: 1.1rem;
-    margin-bottom: 5px;
-  }
-
-  .description {
-    font-size: 0.9rem;
-    color: #555;
-    margin-bottom: 10px;
+  .product h3 {
+    margin: 0 0 12px;
+    font-size: 1.3rem;
   }
 
   .stars {
     display: flex;
-    justify-content: center;
-    gap: 5px;
-    font-size: 1.5rem;
+    gap: 10px;
+    font-size: 2.3rem;
     cursor: pointer;
   }
 
   .star {
-    color: #ccc;
-    transition: color 0.3s;
+    color: #c8c8c8;
+    transition: color 0.2s;
   }
 
   .star.active {
-    color: #f5b301;
+    color: #ffb400;
+  }
+
+  button#enviar {
+    width: 100%;
+    padding: 18px;
+    border: none;
+    background: #ff7a00;
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  button#enviar:hover {
+    opacity: 0.85;
   }
 </style>
 </head>
+
 <body>
 
-<h1>Cardápio Plimt</h1>
-<p style="text-align:center; color:#555;">Veja nossos produtos e avalie os que já comeu!</p>
+<!-- BOTÃO FLUTUANTE DO JINGLE -->
+<button id="playJingle">▶️ Jingle</button>
+<audio id="audioJingle" src="./assets/jingle.mp3"></audio>
 
-<div class="menu">
-  <div class="item" data-id="1">
-    <img src="./assets/Sorvete Plimt_1.jpg" alt="Sorvete Plimt">
+<h1>Avalie os Produtos Plimt</h1>
+
+<div class="container">
+
+  <!-- Produto 1 -->
+  <div class="product" data-produto="Sorvete Plimt">
     <h3>Sorvete Plimt</h3>
-    <div class="price">R$ 19,90</div>
-    <div class="description">Sorvete de Gengibre que busca aliviar dores de garganta.</div>
     <div class="stars">
       <span class="star" data-value="1">&#9733;</span>
       <span class="star" data-value="2">&#9733;</span>
@@ -98,11 +119,9 @@
     </div>
   </div>
 
-  <div class="item" data-id="2">
-    <img src="./assets/Sacole-exemplo.jpg" alt="Sacolé XXX">
+  <!-- Produto 2 -->
+  <div class="product" data-produto="Sacolé XXX">
     <h3>Sacolé XXX</h3>
-    <div class="price">R$ 6,90</div>
-    <div class="description">"O Plimt justifica os meios."</div>
     <div class="stars">
       <span class="star" data-value="1">&#9733;</span>
       <span class="star" data-value="2">&#9733;</span>
@@ -112,11 +131,9 @@
     </div>
   </div>
 
-  <div class="item" data-id="3">
-    <img src="./assets/Picole-exemplo.jpeg" alt="Plimt-Picolé">
+  <!-- Produto 3 -->
+  <div class="product" data-produto="Plimt-Picolé">
     <h3>Plimt-Picolé</h3>
-    <div class="price">R$ 3,00</div>
-    <div class="description">"Penso, logo me derreto"</div>
     <div class="stars">
       <span class="star" data-value="1">&#9733;</span>
       <span class="star" data-value="2">&#9733;</span>
@@ -125,51 +142,72 @@
       <span class="star" data-value="5">&#9733;</span>
     </div>
   </div>
+
+  <!-- Botão WhatsApp -->
+  <button id="enviar">📲 Enviar Avaliação pelo WhatsApp</button>
+
 </div>
 
 <script>
-  // Função para salvar a avaliação no localStorage
-  function salvarAvaliacao(itemId, rating) {
-    localStorage.setItem('rating_' + itemId, rating);
-  }
+/* ---- SISTEMA DE ESTRELAS ---- */
+document.querySelectorAll(".product").forEach(produto => {
+  let stars = produto.querySelectorAll(".star");
 
-  // Função para carregar avaliações salvas
-  function carregarAvaliacao(itemId, stars) {
-    const ratingSalvo = localStorage.getItem('rating_' + itemId);
-    if (ratingSalvo) {
-      stars.forEach(star => {
-        if (parseInt(star.dataset.value) <= ratingSalvo) {
-          star.classList.add('active');
+  stars.forEach(star => {
+    star.addEventListener("click", () => {
+      const valor = parseInt(star.dataset.value);
+      stars.forEach(s => s.classList.remove("active"));
+      stars.forEach(s => {
+        if (parseInt(s.dataset.value) <= valor) {
+          s.classList.add("active");
         }
       });
-    }
-  }
 
-  document.querySelectorAll('.item').forEach(item => {
-    const stars = item.querySelectorAll('.star');
-    const itemId = item.dataset.id;
-
-    // Carregar avaliações salvas
-    carregarAvaliacao(itemId, stars);
-
-    stars.forEach(star => {
-      star.addEventListener('click', () => {
-        const valor = parseInt(star.dataset.value);
-
-        // Atualiza visual
-        stars.forEach(s => s.classList.remove('active'));
-        stars.forEach(s => {
-          if (parseInt(s.dataset.value) <= valor) {
-            s.classList.add('active');
-          }
-        });
-
-        // Salva no localStorage
-        salvarAvaliacao(itemId, valor);
-      });
+      produto.dataset.rating = valor;
     });
   });
+});
+
+/* ---- JINGLE FLUTUANTE ---- */
+const botaoJingle = document.getElementById("playJingle");
+const audioJingle = document.getElementById("audioJingle");
+
+audioJingle.volume = 0.7;
+
+
+botaoJingle.addEventListener("click", () => {
+  if (audioJingle.paused) {
+    audioJingle.play();
+    botaoJingle.textContent = "⏸️ Pausar";
+  } else {
+    audioJingle.pause();
+    botaoJingle.textContent = "▶️ Jingle";
+  }
+});
+
+/* ---- ENVIAR PARA WHATSAPP ---- */
+document.getElementById("enviar").addEventListener("click", () => {
+  const numero = "5521971140099"; 
+  
+  let texto = "*Minha Avaliação dos Produtos Plimt:*\n\n";
+
+  document.querySelectorAll(".product").forEach(prod => {
+    const nome = prod.dataset.produto;
+    const rating = prod.dataset.rating || "Zero";
+
+    if(rating > 1)
+      texto += `${nome}: ${rating} estrelas\n`;
+
+    if(rating == 1)
+      texto += `${nome}: ${rating} estrela\n`;
+  });
+
+  const link = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
+
+  window.open(link, "_blank"); 
+});
 </script>
 
 </body>
 </html>
+

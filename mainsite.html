@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Plimt - Sorvetes</title>
+
+  <style>
+    :root{
+      --laranja:#ff8a00;
+      --rosa:#ff3f81;
+      --verde:#00c88f;
+      --azul:#0095ff;
+      --cinza:#f5f5f5;
+      --preto:#111;
+      --branco:#fff;
+      --mundo:#f8f8f8;
+    }
+
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Arial, Helvetica, sans-serif;background:var(--mundo);color:#333}
+
+    /* HEADER */
+    header{
+      background:linear-gradient(135deg, var(--laranja), var(--rosa));
+      padding:18px 40px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:sticky;
+      top:0;
+      z-index:1000;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:bold;
+      color:#fff;
+      font-size:28px;
+      text-decoration:none;
+    }
+
+    .brand img{
+      width:40px;
+      border-radius:50%;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:#fff;
+      font-weight:600;
+      margin-left:18px;
+    }
+    nav a:hover{opacity:.8}
+
+    /* HERO */
+    .hero{
+      display:grid;
+      grid-template-columns:1.1fr 0.9fr;
+      gap:20px;
+      padding:40px;
+      background:#fff;
+      border-radius:12px;
+      max-width:960px;
+      margin:20px auto;
+      box-shadow:0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .hero h1{font-size:46px; margin:0}
+    .hero p{font-size:18px; color:#666}
+    .btn{
+      display:inline-block;
+      padding:12px 20px;
+      background:var(--azul);
+      color:#fff;
+      border-radius:6px;
+      text-decoration:none;
+      font-weight:700;
+    }
+    .btn:hover{background:var(--verde);}
+
+    /* CARDÁPIO */
+    .cardapio{
+      display:grid;
+     grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
+      gap:20px;
+      padding:0 40px 40px;
+      max-width:960px;
+      margin:0 auto;
+    }
+
+    .produto{
+      background:#fff;
+      border-radius:12px;
+      box-shadow:0 2px 6px rgba(0,0,0,0.07);
+      overflow:hidden;
+      transition:.3s;
+    }
+    .produto:hover{transform:scale(1.03)}
+    .produto img{
+      width:100%;
+      height:160px;
+      object-fit:cover;
+    }
+    .produto .conteudo{padding:12px}
+    .produto h3{margin:0 0 6px}
+    .preco{
+      margin:0 0 8px;
+      font-size:16px;
+      font-weight:bold;
+      color:var(--laranja);
+    }
+
+    /* FAQ */
+    .faq{
+      max-width:960px;
+      margin:40px auto;
+      padding:0 40px 40px;
+    }
+    .faq h2{margin-bottom:15px}
+    details{
+      background:#fff;
+      padding:15px;
+      margin-bottom:10px;
+      border-radius:8px;
+      box-shadow:0 2px 6px rgba(0,0,0,0.05);
+      cursor:pointer;
+    }
+    details summary{
+      font-weight:700;
+      font-size:16px;
+    }
+
+    /* CONTATO */
+    .contato{
+      max-width:960px;
+      margin:40px auto;
+      padding:0 40px 40px;
+    }
+    .contato input, .contato textarea{
+      width:100%;
+      padding:12px;
+      margin-bottom:12px;
+      border-radius:6px;
+      border:1px solid #ccc;
+    }
+    .contato button{
+      padding:12px 18px;
+      background:var(--azul);
+      color:#fff;
+      font-weight:700;
+      border:none;
+      border-radius:6px;
+      cursor:pointer;
+    }
+    .contato button:hover{background:var(--verde)}
+
+    /* FOOTER */
+    footer{
+      background:#111;
+      color:#ddd;
+      padding:25px;
+      text-align:center;
+      font-size:14px;
+    }
+
+    /* PÁGINA DE CONFIRMAÇÃO */
+    #confirmacao{
+      display:none;
+      text-align:center;
+      padding:40px;
+      background:#fff;
+      margin:20px auto;
+      max-width:700px;
+      border-radius:12px;
+      box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .zap {
+      color:#25D366;
+      font-weight:600;
+    }
+
+    .zap:hover {
+        opacity: 0.8;
+    }
+
+    @media(max-width:900px){
+      .hero{grid-template-columns:1fr}
+    }
+
+    /* Ajuste geral mobile */
+@media (max-width: 600px) {
+  header {
+    padding: 14px 20px;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  nav a {
+    margin-left: 12px;
+    font-size: 14px;
+  }
+
+  .hero {
+    padding: 20px;
+    margin: 10px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .cardapio {
+    padding: 20px;
+    gap: 15px;
+  }
+
+  .produto img {
+    height: 140px;
+  }
+
+  .faq, .contato {
+    padding: 0 20px 30px;
+  }
+}
+
+/* Celulares pequenos (iPhone SE, Galaxy A01, Motorola E) */
+@media (max-width: 430px) {
+  header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  nav a {
+    margin: 0 8px;
+    font-size: 13px;
+  }
+
+  .hero h1 {
+    font-size: 26px;
+  }
+
+  .hero {
+    margin: 10px;
+    padding: 15px;
+  }
+
+  .produto {
+    border-radius: 10px;
+  }
+
+  .produto img {
+    height: 120px;
+  }
+}
+
+/* Celulares muito pequenos (360px ou menos) */
+@media (max-width: 360px) {
+
+  body {
+    font-size: 15px;
+  }
+
+  .hero h1 {
+    font-size: 22px;
+    line-height: 1.2;
+  }
+
+  nav a {
+    margin: 0 6px;
+    font-size: 12px;
+  }
+
+  .produto img {
+    height: 105px;
+  }
+}
+
+    #inicio, #faq, #contato {
+        scroll-margin-top: 80px;
+    }
+
+    #cardapio {
+        scroll-margin-top: 130px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header>
+  <a class="brand" href="#">
+    <img src="assets/Logo.jpg" alt="Logo Plimt">
+    Plimt
+  </a>
+  <nav>
+    <a href="#inicio">Início</a>
+    <a href="#cardapio">Cardápio</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contato">Contato</a>
+  </nav>
+</header>
+
+<section class="hero" id="inicio">
+  <div>
+    <h1>O sabor tropical que transforma seu dia</h1>
+    <p>Sorvetes artesanais feitos com frutas frescas, ingredientes selecionados e aquele toque Plimt que só a gente tem.</p>
+    <a href="#cardapio" class="btn">Ver Cardápio</a>
+  </div>
+
+  <div>
+    <img src="https://images.unsplash.com/photo-1505253210347-8f8fecdcc0b4?auto=format&fit=crop&w=600&q=80" 
+         style="width:100%;border-radius:12px">
+  </div>
+</section>
+
+<h2 style="padding-left:40px;">Cardápio</h2>
+<div class="cardapio" id="cardapio">
+
+  <div class="produto">
+    <img src="./assets/sorvete1.jpg">
+    <div class="conteudo">
+      <h3>Sorvete Plimt</h3>
+      <p class="preco">R$ 19,90</p>
+      <p>Sabor de gengibre — perfeito para refrescar e acalmar.</p>
+    </div>
+  </div>
+
+  <div class="produto">
+    <img src="./assets/sacole.jpg">
+    <div class="conteudo">
+      <h3>Sacolé XXX</h3>
+      <p class="preco">R$ 6,90</p>
+      <p>"O Plimt justifica os meios"</p>
+    </div>
+  </div>
+
+  <div class="produto">
+    <img src="./assets/picole.jpg">
+    <div class="conteudo">
+      <h3>Picolé Tropical</h3>
+      <p class="preco">R$ 3,00</p>
+      <p>"Penso, logo me derreto"</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <h2>Perguntas Frequentes</h2>
+
+  <details>
+    <summary>Vocês entregam?</summary>
+    <p>Sim! Entregamos em toda a cidade com taxa fixa de R$ 7,00.</p>
+  </details>
+
+  <details>
+    <summary>O sorvete é artesanal?</summary>
+    <p>100% artesanal, com ingredientes naturais.</p>
+  </details>
+
+  <details>
+    <summary>Quais formas de pagamento?</summary>
+    <p>Pix, débito, crédito e dinheiro.</p>
+  </details>
+
+  <details>
+    <summary>Política de frete</summary>
+    <p>Pedidos acima de R$ 60,00 têm frete grátis.</p>
+  </details>
+</section>
+
+<!-- CONTATO -->
+<section class="contato" id="contato">
+  <h2>Contato</h2>
+
+  <input id="nome" placeholder="Seu nome">
+  <input id="email" placeholder="Seu email">
+  <textarea id="mensagem" placeholder="Mensagem"></textarea>
+
+  <button onclick="enviarMensagem()">Enviar</button>
+</section>
+
+<!-- CONFIRMAÇÃO -->
+<div id="confirmacao">
+  <h2>Mensagem enviada com sucesso! 🎉</h2>
+  <p>Obrigado por entrar em contato. Retornaremos em breve por e-mail.</p>
+</div>
+
+<footer>
+  <p>© 2025 Plimt Sorvetes • Todos os direitos reservados</p>
+  <p>Instagram: <a href="https://instagram.com/plimtsorverteria"target="_blank">
+    @plimt_sorveteria
+  </a>
+  ///  WhatsApp:
+<a class="zap" href="https://wa.me/5521971140099" target="_blank">(21) 97114-0099
+</a>
+
+
+</footer>
+
+<script>
+function enviarMensagem(){
+  const nome = document.getElementById("nome").value.trim()
+  const email = document.getElementById("email").value.trim()
+  const msg = document.getElementById("mensagem").value.trim()
+
+  if(!nome || !email || !msg){
+    alert("Preencha todos os campos!")
+    return
+  }
+
+  document.getElementById("confirmacao").style.display = "block"
+
+  // SIMULAÇÃO DE E-MAIL AUTOMÁTICO
+  console.log(`EMAIL ENVIADO PARA ${email} COM A MENSAGEM: ${msg}`)
+}
+</script>
+
+</body>
+</html>
