@@ -6,7 +6,7 @@
 
 :root {
   --text-color: white;
-  --bg-url: url(./assets/bg-mobile.jpg);
+  --bg-url: linear-gradient(135deg, #3f2a1c, #8b5e3c, #c69c6d); /*url(./assets/bg-mobile.jpg);*/
   --stroke-color: rgba(255, 255, 255, 0.5);
   --surface-color: rgba(255, 255, 255, 0.05);
   --surface-color-hover: rgba(0, 0, 0, 0.02);
@@ -16,7 +16,7 @@
 
 .light {
   --text-color: black;
-  --bg-url: url(./assets/bg-mobile-light.jpg);
+  --bg-url: linear-gradient(135deg, #c5bbab, #f5e4c4, #e6c8a5);/*url(./assets/bg-mobile-light.jpg);*/
   --stroke-color: rgba(0, 0, 0, 0.5);
   --surface-color: rgba(0, 0, 0, 0.05);
   --surface-color-hover: rgba(0, 0, 0, 0.02);
@@ -25,7 +25,7 @@
 }
 
 body {
-  background: var(--bg-url) no-repeat top center/cover;
+  background: var(--bg-url);
   height: 100vh;
 }
 body * {
@@ -158,6 +158,13 @@ footer {
   font-size: 14px;
 }
 
+.lisam-link {
+  color: wheat;
+}
+.lisam-link:hover {
+  color: #724d31;
+}
+
 /*media queries*/
 @media (min-width: 700px) {
   :root {
@@ -186,8 +193,4 @@ footer {
   to {
     left: 0;
   }
-}
-
-#rocketseat :hover {
-  color: magenta;
 }
