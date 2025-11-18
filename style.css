@@ -168,11 +168,11 @@ footer {
 /*media queries*/
 @media (min-width: 700px) {
   :root {
-    --bg-url: url(./assets/bg-desktop.jpg);
+      --bg-url: linear-gradient(135deg, #3f2a1c, #8b5e3c, #c69c6d);
   }
 
   .light {
-    --bg-url: url(./assets/bg-desktop-light.jpg);
+      --bg-url: linear-gradient(135deg, #3f2a1c, #8b5e3c, #c69c6d);
   }
 }
 
