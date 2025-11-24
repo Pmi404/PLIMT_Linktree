@@ -202,6 +202,24 @@
       color: #f04337;
     }
 
+    .btn-whatsapp {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background: #25d365e7;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 0 0 12px 12px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.btn-whatsapp:hover {
+  background: #1ebe5d;
+}
+
+
     @media(max-width:900px){
       .hero{grid-template-columns:1fr}
     }
@@ -326,9 +344,9 @@
 
 <section class="hero" id="inicio">
   <div>
-    <h1>O sabor tropical que transforma seu dia</h1>
+    <h1>Saboroso e inesquecível</h1>
     <p>Sorvetes artesanais feitos com frutas frescas, ingredientes selecionados e aquele toque Plimt que só a gente tem.</p>
-    <a href="#cardapio" class="btn">Ver Cardápio</a>
+    <!-- <a href="#cardapio" class="btn">Ver Cardápio</a> -->
   </div>
 
   <div>
@@ -341,22 +359,19 @@
 <div class="cardapio" id="cardapio">
 
   <div class="produto">
-    <img src="./assets/gengibre-mel-ia.png">
-    <div class="conteudo">
-      <h3>Plimt CaGeMel</h3>
-      <p class="preco">R$ 19,90</p>
-      <p>Sabor de gengibre — perfeito para refrescar e acalmar.</p>
-    </div>
-  </div>
-
-  <div class="produto">
     <img src="./assets/Maracuja-ia.png">
     <div class="conteudo">
       <h3>Plimt Maracujá</h3>
-      <p class="preco">R$ 15,90</p>
+      <p class="preco">R$ 16,90</p>
       <p>"O Plimt justifica os meios"</p>
     </div>
+    <button class="btn-whatsapp" onclick="pedirProduto('Plimt Maracujá')">
+  Pedir pelo WhatsApp
+</button>
+
   </div>
+
+
 
   <div class="produto">
     <img src="./assets/doce-de-leite-ia.png">
@@ -365,6 +380,9 @@
       <p class="preco">R$ 16,00</p>
       <p>"Penso, logo me derreto"</p>
     </div>
+    <button class="btn-whatsapp" onclick="pedirProduto('Plimt Doce de Leite')">
+    Pedir pelo WhatsApp
+    </button>
   </div>
 
 </div>
@@ -444,6 +462,16 @@ function enviarMensagem(){
   console.log(`EMAIL ENVIADO PARA ${email} COM A MENSAGEM: ${msg}`)
 }
 </script>
+
+<script>
+function pedirProduto(nomeProduto){
+    const numero = "5521971140099"; // número do footer
+    const mensagem = `Gostaria de pedir um ${nomeProduto}, por favor`;
+    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+    window.open(url, "_blank");
+}
+</script>
+
 
 </body>
 </html>
