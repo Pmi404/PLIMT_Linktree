@@ -32,6 +32,8 @@
       z-index:1000;
     }
 
+
+
     .brand{
       display:flex;
       align-items:center;
@@ -287,11 +289,15 @@
 
   .produto {
     border-radius: 10px;
+
   }
 
-  .produto img {
-    height: 120px;
-  }
+  .produto img{
+  width:100%;
+  height:300px; 
+  object-fit:cover;
+}
+
 }
 
 /* Celulares muito pequenos (360px ou menos) */
@@ -312,7 +318,7 @@
   }
 
   .produto img {
-    height: 105px;
+    height: 165px;
   }
 }
 
@@ -324,42 +330,84 @@
         scroll-margin-top: 130px;
     }
 
+    @media (max-width: 480px) {
+  #botao-voltar {
+    bottom: 15px;
+    left: 15px;
+    padding: 10px 16px;
+    font-size: 14px;
+    border-radius: 12px;
+  }
+}
+
+
+#botao-voltar {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+
+  background: linear-gradient(135deg, #3f2a1c, #8b5e3c, #c69c6d);
+  color: #fff;
+  padding: 10px 15px;
+
+  border-radius: 15px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 12px;
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  border: 2px rgba(255,255,255,0.15);
+
+  transition: 0.2s ease-in-out;
+  z-index: 99999; /* força a ficar por cima */
+}
+
+#botao-voltar:hover {
+  transform: scale(1.02);
+  opacity: 0.9;
+}
+
   </style>
 </head>
 
 <body>
 
-<header>
-  <a class="brand" href="#">
-    <img src="assets/Logo.jpg" alt="Logo Plimt">
-    Plimt
-  </a>
-  <nav>
-    <a href="#inicio">Início</a>
-    <a href="#cardapio">Cardápio</a>
-    <a href="#faq">FAQ</a>
-    <a href="#contato">Contato</a>
-  </nav>
-</header>
+  
+  <header>
+    <a class="brand" href="#">
+      <img src="assets/Logo.jpg" alt="Logo Plimt">
+      Plimt
+    </a>
+    
+    <nav>
+  <a href="#inicio">Início</a>
+  <a href="#cardapio">Cardápio</a>
+  <a href="#faq">FAQ</a>
+  <a href="#contato">Contato</a>
 
-<section class="hero" id="inicio">
-  <div>
-    <h1>Saboroso e inesquecível</h1>
-    <p>Sorvetes artesanais feitos com frutas frescas, ingredientes selecionados e aquele toque Plimt que só a gente tem.</p>
-    <!-- <a href="#cardapio" class="btn">Ver Cardápio</a> -->
-  </div>
+</nav>
 
-  <div>
-    <!-- <img src="https://images.unsplash.com/photo-1505253210347-8f8fecdcc0b4?auto=format&fit=crop&w=600&q=80" 
-         style="width:100%;border-radius:12px"> -->
-  </div>
-</section>
-
-<h2 style="padding-left:40px;">Nosso Cardápio</h2>
-<div class="cardapio" id="cardapio">
-
-  <div class="produto">
-    <img src="./assets/Maracuja-ia.png">
+  </header>
+  
+  
+  <section class="hero" id="inicio">
+    <div>
+      <h1>Saboroso e inesquecível</h1>
+      <p>Sorvetes artesanais feitos com frutas frescas, ingredientes selecionados e aquele toque Plimt que só a gente tem.</p>
+      <!-- <a href="#cardapio" class="btn">Ver Cardápio</a> -->
+    </div>
+    
+    <div>
+      <!-- <img src="https://images.unsplash.com/photo-1505253210347-8f8fecdcc0b4?auto=format&fit=crop&w=600&q=80" 
+      style="width:100%;border-radius:12px"> -->
+    </div>
+  </section>
+  
+  <h2 style="padding-left:40px;">Nosso Cardápio</h2>
+  <div class="cardapio" id="cardapio">
+    
+    <div class="produto">
+      <img src="./assets/Maracuja-ia.png">
     <div class="conteudo">
       <h3>Plimt Maracujá</h3>
       <p class="preco">R$ 16,90</p>
@@ -472,6 +520,7 @@ function pedirProduto(nomeProduto){
 }
 </script>
 
+<a href="index.html" id="botao-voltar">↩ Voltar</a>
 
 </body>
 </html>
